@@ -13,7 +13,6 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-
 //    @GetMapping
 //    public List<Recipe> getAll() {
 //        return recipeService.findAllRecipe();
