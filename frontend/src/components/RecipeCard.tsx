@@ -20,7 +20,7 @@ function RecipeCard(props: Props) {
     return (
         <>
             <Card sx={{ maxWidth: 320 }}>
-                <CardActionArea>
+                <CardActionArea href={'/recipe'}>
                     <CardMedia
                         component={'img'}
                         alt={recipe.name}
@@ -35,7 +35,7 @@ function RecipeCard(props: Props) {
                         </Typography>
                         <Box component={'div'} sx={{display: 'flex', alignItems: 'center'}}>
                             <Typography variant="caption" fontSize={'inherit'} sx={{color: 'text.secondary', paddingTop: '2px'}}>
-                                {recipe.duration.time} {recipe.duration.dimension}
+                                {recipe.duration && recipe.duration.time} {recipe.duration && recipe.duration.dimension}
                             </Typography>
                             <TimerOutlinedIcon fontSize={'small'} sx={{marginLeft: '.2rem'}}></TimerOutlinedIcon>
                         </Box>
