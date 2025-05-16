@@ -1,10 +1,11 @@
 export interface IRecipe {
-    id: string;
+    id?: string;
     name: string;
     description: string;
     image?: string;
     ingredients: string[];
-    duration: {
+    instruction: string;
+    duration?: {
         time: number;
         dimension: string;
     };
