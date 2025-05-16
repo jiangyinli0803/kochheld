@@ -4,4 +4,8 @@ export interface IRecipe {
     description: string;
     image?: string;
     ingredients: string[];
+    duration: {
+        time: number;
+        dimension: string;
+    };
 }
