@@ -20,7 +20,7 @@ function RecipeCard(props: Props) {
     return (
         <>
             <Card sx={{ maxWidth: 320 }}>
-                <CardActionArea href={'/recipe'}>
+                <CardActionArea href={`/recipe/${recipe.id}`}>
                     <CardMedia
                         component={'img'}
                         alt={recipe.name}
