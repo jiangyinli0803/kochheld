@@ -13,7 +13,6 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
@@ -22,6 +21,9 @@ import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import CakeIcon from '@mui/icons-material/Cake';
 import PublicIcon from '@mui/icons-material/Public';
 import LogoKochHeld from '../assets/images/LogoKochHeld.png';
+import {Link} from "react-router-dom";
+import { ListItemButton } from '@mui/material';
+
 
 
 
@@ -187,36 +189,36 @@ export default function NavBar() {
             onKeyDown={toggleDrawer(false)}
         >
             <List>
-                <ListItem button>
+                <ListItemButton>
                     <ListItemIcon>
                         <BrunchDiningIcon />
                     </ListItemIcon>
                     <ListItemText primary="Frühstück" />
-                </ListItem>
-                <ListItem button>
+                </ListItemButton>
+                <ListItemButton>
                     <ListItemIcon>
                         <RestaurantIcon />
                     </ListItemIcon>
                     <ListItemText primary="Mittagessen" />
-                </ListItem>
-                <ListItem button>
+                </ListItemButton>
+                <ListItemButton>
                     <ListItemIcon>
                         <DinnerDiningIcon />
                     </ListItemIcon>
                     <ListItemText primary="Abendessen" />
-                </ListItem>
-                <ListItem button>
+                </ListItemButton>
+                <ListItemButton>
                     <ListItemIcon>
                         <CakeIcon />
                     </ListItemIcon>
                     <ListItemText primary="Snacks" />
-                </ListItem>
-                <ListItem button>
+                </ListItemButton>
+                <ListItemButton>
                     <ListItemIcon>
                         <PublicIcon />
                     </ListItemIcon>
                     <ListItemText primary="Weltküche" />
-                </ListItem>
+                </ListItemButton>
             </List>
         </Box>
     );
@@ -291,9 +293,17 @@ export default function NavBar() {
                 onClose={toggleDrawer(false)}
             >
                 {menuList}
+
             </Drawer>
             {renderMobileMenu}
             {renderMenu}
+
+            <ul className="navi">
+                <li><Link to={"/"}>Home</Link></li>
+                <li><Link to={"/aisearch"}>AI-Rezept</Link></li>
+
+            </ul>
+
         </Box>
     );
 }
