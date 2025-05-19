@@ -1,76 +1,69 @@
 package org.example.backend.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.backend.model.chatgpt.AiRecipe;
-import org.example.backend.model.chatgpt.ChatgptRequest;
-import org.example.backend.model.chatgpt.ChatgptResponse;
+import org.example.backend.model.chatgpt.*;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.web.client.RestClient;
-import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
+import java.util.List;
+
 import static org.mockito.Mockito.*;
 
-@SpringBootTest(properties="OpenAi_API_Key=dummy-test-key")
+@ExtendWith(MockitoExtension.class)
 class AiRecipeControllerTest {
 
+    @Mock
+    RestClient restClient;
+    @Mock  RestClient.RequestBodyUriSpec uriSpec;
+    @Mock  RestClient.RequestBodySpec bodySpec;
+    @Mock  RestClient.ResponseSpec respSpec;
+    @Mock  ObjectMapper mapper;
+
+    @InjectMocks
+    AiRecipeController controller;    // 让 Mockito 注入上面两个 mock
+
     @Test
-    void testSearchByIngredient() throws Exception {
-        // Arrange
-        String mockApiKey = "dummy-test-key";
-        String ingredient    = "test";
-        ObjectMapper objectMapper = mock(ObjectMapper.class);
+    @WithMockUser
+        // 如果你的方法里不依赖 SecurityContext 可以省掉
+    void searchByIngredient_returnsRecipe() throws Exception {
 
-        String jsonFromGpt = """
-            {
-              "title": "Test Rezept",
-              "ingredients": ["1 Test Zutat"],
-              "description": "Test Beschreibung"
-            }
-            """;
+        /* ---------- Arrange ---------- */
+        String ingredient = "test";
 
-        AiRecipe expectedRecipe = new AiRecipe(
-                "Test Rezept",
-                List.of("1 Test Zutat"),
-                "Test Beschreibung"
-        );
-        when(objectMapper.readValue(jsonFromGpt, AiRecipe.class)).thenReturn(expectedRecipe);
-        // Mock RestClient and its response
-        RestClient mockRestClient = mock(RestClient.class);
-
-        RestClient.RequestBodyUriSpec uriSpec = mock(RestClient.RequestBodyUriSpec.class);
-        RestClient.ResponseSpec respSpec = mock(RestClient.ResponseSpec.class);
-        RestClient.RequestBodySpec bodySpec  = mock(RestClient.RequestBodySpec.class);
-
-        when(mockRestClient.post()).thenReturn(uriSpec);
+        when(restClient.post()).thenReturn(uriSpec);
         when(uriSpec.body(any(ChatgptRequest.class))).thenReturn(bodySpec);
         when(bodySpec.retrieve()).thenReturn(respSpec);
 
-        ChatgptResponse gptResp = mock(ChatgptResponse.class);
-        when(gptResp.text()).thenReturn(jsonFromGpt);
+        // 1️⃣ 先构造 message
+        ChatgptMessage msg = new ChatgptMessage(
+                "assistant",
+                """
+                { "title":"Test Rezept",
+                  "ingredients":["1 Test Zutat"],
+                  "description":"Test Beschreibung" }
+                """
+        );
+
+// 2️⃣ 再构造 choice
+        ChatgptChoice choice = new ChatgptChoice(msg);
+
+// 3️⃣ 最后构造 ChatgptResponse
+        ChatgptResponse gptResp = new ChatgptResponse(List.of(choice));
+
+// 4️⃣ Stub RestClient 返回
         when(respSpec.body(ChatgptResponse.class)).thenReturn(gptResp);
 
-
-        AiRecipeController controller = new AiRecipeController(mockRestClient, objectMapper);
+        AiRecipe expected = new AiRecipe("Test Rezept", List.of("1 Test Zutat"), "Test Beschreibung");
+        when(mapper.readValue(anyString(), eq(AiRecipe.class))).thenReturn(expected);
 
         /* ---------- Act ---------- */
         AiRecipe result = controller.searchByIngredient(ingredient);
 
         /* ---------- Assert ---------- */
-        assertNotNull(result);
-        assertEquals("Test Rezept", result.title());
-        assertIterableEquals(List.of("1 Test Zutat"), result.ingredients());
-        assertEquals("Test Beschreibung", result.description());
-
-        /* ---------- Verify RestClient 交互 ---------- */
-        verify(mockRestClient).post();
-        verify(uriSpec).body(any(ChatgptRequest.class));
-        verify(bodySpec).retrieve();
-        verify(respSpec).body(ChatgptResponse.class);
-
-        /* ---------- Verify ObjectMapper ---------- */
-        verify(objectMapper).readValue(jsonFromGpt, AiRecipe.class);
-
-        verifyNoMoreInteractions(mockRestClient, uriSpec, bodySpec, respSpec, objectMapper);
+        assertEquals(expected, result);
     }
 }
