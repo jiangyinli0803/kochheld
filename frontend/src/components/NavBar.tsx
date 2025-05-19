@@ -301,6 +301,7 @@ export default function NavBar() {
             <ul className="navi">
                 <li><Link to={"/"}>Home</Link></li>
                 <li><Link to={"/aisearch"}>AI-Rezept</Link></li>
+                <li><Link to={"/recipe"}>Recipe</Link></li>
 
             </ul>
 

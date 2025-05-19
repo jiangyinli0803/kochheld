@@ -1,0 +1,55 @@
+.recipe-card-wrapper {
+    background-image: url('/frontend/src/assets/images/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.recipe-card {
+    font-family: 'Montserrat Alternates', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+
+.top-row {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.image {
+    width: 500px;
+    height: 400px;
+    border-radius: 4px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.text-columns {
+    display: flex;
+    flex: 1;
+    gap: 40px;
+    justify-content: space-between;
+}
+
+.description {
+    flex: 2;
+}
+
+.ingredients {
+    flex: 1;
+}
+
+.steps {
+    text-align: initial;
+    font-size: 20px;
+    background-color: #F5E8D5A1;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.steps h3{
+    text-align: center;
+}
