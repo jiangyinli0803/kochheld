@@ -19,7 +19,7 @@ function RecipeCard(props: Props) {
 
     return (
         <>
-            <Card sx={{ maxWidth: 320 }}>
+            <Card sx={{ minWidth: {xs: '100%'}, maxWidth: {sm: 180}}}>
                 <CardActionArea href={`/recipe/${recipe.id}`}>
                     <CardMedia
                         component={'img'}
