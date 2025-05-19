@@ -4,14 +4,16 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 
 import './App.css';
-import type {IRecipe} from "./interfaces/IRecipe.ts";
+
 import NavBar from "./components/NavBar.tsx";
 import Home from "./pages/Home.tsx";
 import Recipes from "./pages/Recipes.tsx";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import AiSearch from "./components/AiSearch.tsx";
 
 
 function App() {
-  const [recipes, setRecipes] = useState<Array<IRecipe>>();
 
     useEffect(() => {
         const testRecipes = [];
@@ -37,10 +39,12 @@ function App() {
     <>
         <NavBar />
         <Container>
-            <Box sx={{ bgcolor: '#cfe8fc', height: '100vh', paddingTop: 10 }}>
+            <Box sx={{ bgcolor: 'white', width: '100vw',  height: '100vh' }}>
                 <Routes>
                     <Route path={'/'} element={<Home />} />
                     <Route path={'/recipes'} element={recipes && <Recipes recipes={recipes} />} />
+                    <Route path={"/aisearch"} element={<AiSearch/>}/>
+                    <Route path={'/recipes'} element={<Recipes recipes={recipes} />} />
                     {/*<Route path={'/recipe'} element={<Recipe recipe={recipe} />} />*/}
                 </Routes>
             </Box>
