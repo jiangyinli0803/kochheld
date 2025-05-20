@@ -12,13 +12,29 @@ import AiSearch from "./components/AiSearch.tsx";
 import type {IRecipe} from "./interfaces/IRecipe.ts";
 import Recipe from "./pages/recipe/Recipe.tsx";
 import Footer from "./components/footer/Footer.tsx";
+import axios from "axios";
+import { useEffect } from "react";
 
 
 function App() {
-
     const [recipes, setRecipes] = useState <IRecipe[]>()
+    
+    function login(){
+        const host:string = window.location.host === "localhost:5173" ?
+            "http://localhost:8080/"
+            :
+            window.location.origin
+        window.open(host + "/oauth2/authorization/github", "_self")
+    }
+
+    const loadUser = ()=>{
+            axios.get("/api/auth")
+              .then(response => console.log(response.data))
+    }
 
     useEffect(() => {
+        loadUser()
+      
         const testRecipes = [];
         for (let i = 0; i < 20; i++) {
             testRecipes.push({
@@ -59,23 +75,20 @@ function App() {
   return (
 
     <>
-        {/*<NavBar />*/}
-        {/*<Container>*/}
-        {/*    <Box sx={{ bgcolor: 'white', width: '100vw',  height: '100vh' }}>*/}
         <NavBar />
-        <div className="app-container">
-            <div className="page-content">
+        <button onClick={login}>Login</button>
+
+        <Container>
+            <Box>
                 <Routes>
                     <Route path={'/'} element={<Home />} />
                     <Route path={'/recipes'} element={recipes && <Recipes recipes={recipes} />} />
                     <Route path={"/aisearch"} element={<AiSearch/>}/>
                     <Route path={'/recipe'} element={<Recipe recipe={recipe} />} />
                 </Routes>
-            {/*</Box>*/}
-        {/*</Container>*/}
-            </div>
             <Footer />
-        </div>
+            </Box>
+        </Container>
     </>
   )
 }
