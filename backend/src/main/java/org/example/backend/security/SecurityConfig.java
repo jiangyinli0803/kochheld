@@ -18,7 +18,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(a -> a
 //                        .requestMatchers("/api/auth/me").authenticated()
 //                        .requestMatchers("/api/secured").authenticated()
-                                .anyRequest().permitAll()
+                          .anyRequest().permitAll()
                 )
                 .oauth2Login(o -> o.defaultSuccessUrl("http://localhost:5173"));
         return http.build();
