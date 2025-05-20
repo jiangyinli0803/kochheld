@@ -23,7 +23,7 @@ import PublicIcon from '@mui/icons-material/Public';
 import LogoKochHeld from '../assets/images/LogoKochHeld.png';
 import {Link} from "react-router-dom";
 import { ListItemButton } from '@mui/material';
-
+import CottageIcon from '@mui/icons-material/Cottage';
 
 
 
@@ -140,7 +140,6 @@ export default function NavBar() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Favoriten</MenuItem>
             <MenuItem onClick={handleMenuClose}>Log In</MenuItem>
             <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
         </Menu>
@@ -175,7 +174,6 @@ export default function NavBar() {
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
-            <MenuItem onClick={handleMenuClose}>Favoriten</MenuItem>
             <MenuItem onClick={handleMenuClose}>Log In</MenuItem>
             <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
         </Menu>
@@ -189,6 +187,12 @@ export default function NavBar() {
             onKeyDown={toggleDrawer(false)}
         >
             <List>
+                <ListItemButton>
+                    <ListItemIcon>
+                        <CottageIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary="Home" />
+                </ListItemButton>
                 <ListItemButton>
                     <ListItemIcon>
                         <BrunchDiningIcon />
