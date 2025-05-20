@@ -60,3 +60,22 @@
   background-color: #3B4D17 ;
 }
 
+body, html {
+  overflow-x: hidden;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.app-container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.page-content {
+  flex: 1;
+}

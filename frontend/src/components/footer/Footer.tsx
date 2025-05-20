@@ -1,3 +1,4 @@
+import LogoFooter from '../../assets/images/Logo_footer.png';
 
 import "./Footer.css";
 
@@ -29,7 +30,7 @@ export default function Footer() {
 
             <div className="footer-bottom">
                 <div className="footer-line" />
-                <img src="images/Logo_footer.png" alt="Koch Held Logo" className="footer-logo" />
+                <img src={LogoFooter} alt="Koch Held Logo" className="footer-logo" />
                 <div className="footer-line" />
             </div>
             <p className="footer-text">2025 © Koch Held – Deine Plattform für Rezepte</p>

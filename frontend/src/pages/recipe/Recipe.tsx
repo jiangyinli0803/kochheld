@@ -46,7 +46,7 @@ const Recipe: React.FC<Props> = (props) => {
                     <p>{props.recipe.instruction}</p>
                 </div>
             </div>
-        </div>
+  </div>
     );
 };
 
