@@ -9,4 +9,4 @@ public record ChatgptRequest(
 ) {
     public ChatgptRequest(String message) {
         this("gpt-4o-mini", Collections.singletonList(new ChatgptRequestMessage("user", message)));
-}}
+    }}
