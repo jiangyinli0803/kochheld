@@ -27,6 +27,7 @@ import CottageIcon from '@mui/icons-material/Cottage';
 
 
 
+
 // Design suchfeld
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -243,15 +244,19 @@ export default function NavBar() {
                     </IconButton>
 
                     <LogoContainer>
+                        <Link to="/">
                         <img
                             src={LogoKochHeld}
                             alt="KochHeld Logo"
                             style={{
-                                maxWidth: '100%',
-                                maxHeight: '100%',
-                                objectFit: 'contain'
+                                maxWidth: '50%',
+                                maxHeight: '50%',
+                                objectFit: 'contain',
+                                cursor: 'pointer'
                             }}
                         />
+                     </Link>
+
                     </LogoContainer>
 
                     <Search>
