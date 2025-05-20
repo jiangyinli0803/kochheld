@@ -12,13 +12,14 @@ import Recipes from "./pages/Recipes.tsx";
 import AiSearch from "./components/AiSearch.tsx";
 import Recipe from "./pages/recipe/Recipe.tsx";
 import Footer from "./components/footer/Footer.tsx";
+
+
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 
 function App() {
     const [recipes, setRecipes] = useState <IRecipe[]>();
-    const [user, setUser] = useState<string | undefined | null>();
-
+const [user, setUser] = useState<string | undefined | null>();
     function login(){
         const host:string = window.location.host === "localhost:5173" ?
             "http://localhost:8080/"
