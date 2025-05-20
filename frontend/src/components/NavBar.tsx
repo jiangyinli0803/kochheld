@@ -141,8 +141,8 @@ export default function NavBar() {
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleMenuClose}>Favoriten</MenuItem>
-            <MenuItem onClick={handleMenuClose}>News</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Über uns</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Log In</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
         </Menu>
     );
 
@@ -176,8 +176,8 @@ export default function NavBar() {
                 <p>Profile</p>
             </MenuItem>
             <MenuItem onClick={handleMenuClose}>Favoriten</MenuItem>
-            <MenuItem onClick={handleMenuClose}>News</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Über uns</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Log In</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
         </Menu>
     );
 
@@ -301,6 +301,7 @@ export default function NavBar() {
             <ul className="navi">
                 <li><Link to={"/"}>Home</Link></li>
                 <li><Link to={"/aisearch"}>AI-Rezept</Link></li>
+                <li><Link to={"/recipe"}>Recipe</Link></li>
 
             </ul>
 
