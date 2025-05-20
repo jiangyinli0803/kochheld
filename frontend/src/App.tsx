@@ -12,9 +12,7 @@ import Recipes from "./pages/Recipes.tsx";
 import AiSearch from "./components/AiSearch.tsx";
 import Recipe from "./pages/recipe/Recipe.tsx";
 import Footer from "./components/footer/Footer.tsx";
-import axios from "axios";
-import {Container} from "@mui/material";
-import Box from "@mui/material/Box";
+
 
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
