@@ -1,26 +1,27 @@
 import {useEffect, useState} from 'react';
 import {Routes, Route} from "react-router-dom";
-// import Container from "@mui/material/Container";
-// import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import axios from "axios";
 
 import './App.css';
-
+import type {IRecipe} from "./interfaces/IRecipe.ts";
 import NavBar from "./components/NavBar.tsx";
 import Home from "./pages/Home.tsx";
 import Recipes from "./pages/Recipes.tsx";
 import AiSearch from "./components/AiSearch.tsx";
-import type {IRecipe} from "./interfaces/IRecipe.ts";
 import Recipe from "./pages/recipe/Recipe.tsx";
 import Footer from "./components/footer/Footer.tsx";
 import axios from "axios";
 import {Container} from "@mui/material";
 import Box from "@mui/material/Box";
 
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 
 function App() {
-    const [recipes, setRecipes] = useState <IRecipe[]>()
-
+    const [recipes, setRecipes] = useState <IRecipe[]>();
+const [user, setUser] = useState<string | undefined | null>();
     function login(){
         const host:string = window.location.host === "localhost:5173" ?
             "http://localhost:8080/"
@@ -29,9 +30,18 @@ function App() {
         window.open(host + "/oauth2/authorization/github", "_self")
     }
 
+    function logout(){
+        const host:string = window.location.host === "localhost:5173" ?
+            "http://localhost:8080/"
+            :
+            window.location.origin
+        window.open(host + "/logout", "_self")
+    }
+
     const loadUser = ()=>{
             axios.get("/api/auth")
-              .then(response => console.log(response.data))
+              .then(response => setUser(response.data))
+                .catch(() => setUser(null))
     }
 
     useEffect(() => {
@@ -50,7 +60,12 @@ function App() {
                     'Pasta',
                     'Mozarella',
                     'Basilikum'
-                ]
+                ],
+                instruction: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
+                duration: {
+                    time: 120,
+                    dimension: 'MIN'
+                }
             });
         }
         setRecipes(testRecipes as IRecipe[])
@@ -75,10 +90,10 @@ function App() {
         };
 
   return (
-
     <>
         <NavBar />
         <button onClick={login}>Login</button>
+        <button onClick={logout}>Logout</button>
 
         <Container>
             <Box>
@@ -87,6 +102,9 @@ function App() {
                     <Route path={'/recipes'} element={recipes && <Recipes recipes={recipes} />} />
                     <Route path={"/aisearch"} element={<AiSearch/>}/>
                     <Route path={'/recipe'} element={<Recipe recipe={recipe} />} />
+                    <Route element={<ProtectedRoute user={user} />}>
+                        <Route>Dashboard</Route>
+                    </Route>
                 </Routes>
             <Footer />
             </Box>
