@@ -13,14 +13,13 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Import(OAuth2TestConfig.class)
 class AuthControllerTest {
    @Autowired
     private MockMvc mockMvc;
 
     @Test
     void getMe() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/auth")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/auth/me")
                 .with(oidcLogin().userInfoToken(token -> token
                         .claim("login", "testUser"))))
                 .andExpect(MockMvcResultMatchers.status().isOk())
