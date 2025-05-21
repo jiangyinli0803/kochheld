@@ -36,7 +36,8 @@ public class RecipeService {
     }
 
     public Recipe findRecipeByID(String id) {
-        return recipeRepo.findById(id).get();
+        return recipeRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Task with id '" + id + "' could not been found."));
     }
 
 //    public Recipe createRecipe( RecipeDto recipeDto) {
