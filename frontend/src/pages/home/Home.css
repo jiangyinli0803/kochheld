@@ -1,0 +1,163 @@
+.overlay {
+    font-family: 'Montserrat Alternates', sans-serif;
+    position: relative;
+    display: inline-block;
+}
+
+.recipe-card-wrapper {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+.recipe-button {
+    font-family: 'Montserrat Alternates', sans-serif;
+    position: absolute;
+
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    border: 2px solid white;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.recipe-button:hover {
+    background-color: white;
+    color: #222;
+}
+
+.trend-title {
+    text-align: left;
+    padding: 40px 60px 20px;
+    font-size: 28px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    color:  #765638
+}
+
+.recipe-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 0 60px 60px;
+}
+
+.recipe-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.recipe-box {
+    display: flex;
+    max-width: 600px;
+    gap: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    padding: 20px;
+    flex: 1 1 45%;
+}
+
+.recipe-box img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.recipe-content {
+    font-family: 'Montserrat Alternates', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #201103;
+}
+
+.recipe-content h3 {
+    font-size: 20px;
+    color: #201103;
+    margin-bottom: 8px;
+}
+
+.recipe-content p {
+    font-size: 14px;
+    color: #555;
+    flex-grow: 1;
+}
+
+.recipe-content span {
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 10px;
+}
+/*Cooking-card*/
+.cooking-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .cooking-section {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+.image-container {
+    flex: 1;
+}
+
+.cooking-image {
+    width: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.text-container {
+    flex: 1;
+    color: #333;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.title {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.text-container p {
+    font-family: 'Montserrat Alternates', sans-serif;
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+}
+
+.link {
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
