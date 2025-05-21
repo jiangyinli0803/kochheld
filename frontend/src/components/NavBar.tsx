@@ -77,11 +77,11 @@ const LogoContainer = styled('div')(({ theme }) => ({
 }));
 
 type NavBarProps = {
+    login: () => void;
     logout: () => void;
 };
 
-export default function NavBar({ logout }: NavBarProps) {
-    const navigate = useNavigate();
+export default function NavBar({login, logout }: NavBarProps) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
     const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -117,11 +117,6 @@ export default function NavBar({ logout }: NavBarProps) {
         setDrawerOpen(open);
     };
 
-    const handleLogin = () => {
-        navigate("/login");
-        handleMenuClose();
-    };
-
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
         <Menu
@@ -133,8 +128,8 @@ export default function NavBar({ logout }: NavBarProps) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleLogin}>Log In</MenuItem>
-            <MenuItem onClick={() => { logout(); handleMenuClose(); }}>Log Out</MenuItem>
+            <MenuItem onClick={() => { logout(); handleMenuClose(); }>Login</MenuItem>
+            <MenuItem onClick={() => { logout(); handleMenuClose(); }}>Logout</MenuItem>
         </Menu>
     );
 
@@ -161,8 +156,8 @@ export default function NavBar({ logout }: NavBarProps) {
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
-            <MenuItem onClick={handleLogin}>Log In</MenuItem>
-            <MenuItem onClick={() => { logout(); handleMenuClose(); }}>Log Out</MenuItem>
+             <MenuItem onClick={() => { logout(); handleMenuClose(); }>Login</MenuItem>
+            <MenuItem onClick={() => { logout(); handleMenuClose(); }}>Logout</MenuItem>
         </Menu>
     );
 
@@ -265,11 +260,6 @@ export default function NavBar({ logout }: NavBarProps) {
             </Drawer>
             {renderMobileMenu}
             {renderMenu}
-            <ul className="navi" style={{ display: 'flex', gap: 16, listStyle: 'none', padding: 0, marginTop: 64 }}>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/aisearch">AI-Rezepte</Link></li>
-                <li><Link to="/recipes">Rezepte</Link></li>
-            </ul>
-        </Box>
+      </Box>
     );
 }
