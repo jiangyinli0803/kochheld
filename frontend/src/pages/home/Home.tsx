@@ -1,3 +1,4 @@
+
 import "./Home.css";
 import steakImg from "../../assets/images/Home.png";
 import steakImg2 from "../../assets/images/Banner2.png";
@@ -32,6 +33,25 @@ function Home() {
                             </Link>
                         </Carousel.Item>
                     </Carousel>
+
+
+import steakImg from "../../assets/images/Home.png";
+import "./Home.css";
+import {Link} from "react-router-dom";
+
+
+function Home() {
+    return (
+
+            <div className="home">
+                <div className="overlay">
+                    <div className="image-wrapper">
+                        <img src={steakImg} alt="Banner" className="home-image" />
+                    </div>
+                    <Link to="/recipe" className="recipe-button">
+                        Rezept ansehen
+                    </Link>
+                </div>
 
             <h2 className="trend-title">Gerade im Trend</h2>
 
@@ -76,11 +96,13 @@ function Home() {
                     </div>
                 </div>
             </div>
+
                     <div className="list-wrapper" style={{ margin: "3rem 0" }}>
                         <ListCards list={sampleRecipes} />
                     </div>
 
                     <section className="cooking-section">
+
                     <div className="image-container">
                         <img
                             src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -88,6 +110,7 @@ function Home() {
                             className="cooking-image"
                         />
                     </div>
+
                     <div className="text-container">
                         <h2 className="title">Kochen mit Freunden</h2>
                         <p>
@@ -110,8 +133,12 @@ function Home() {
                 </section>
 
         </div>
+
        </div>
 
+
+
+   // </div>
 
     );
 }

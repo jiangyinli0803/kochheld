@@ -4,6 +4,15 @@
     display: inline-block;
 }
 
+
+.recipe-card-wrapper {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
 .recipe-button {
     font-family: 'Montserrat Alternates', sans-serif;
     position: absolute;
@@ -134,10 +143,16 @@
     font-family: 'Montserrat Alternates', sans-serif;
     font-size: 2rem;
     font-weight: 600;
+
+    margin-bottom: 1rem;
+
 }
 
 .text-container p {
     font-family: 'Montserrat Alternates', sans-serif;
+
+    margin-bottom: 1.2rem;
+
     line-height: 1.6;
 }
 
@@ -150,7 +165,9 @@
 .link:hover {
     text-decoration: underline;
 }
+
 .list-wrapper {
     font-family: 'Montserrat Alternates', sans-serif;
 
 }
+

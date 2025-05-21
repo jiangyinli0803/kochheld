@@ -5,8 +5,6 @@ export interface IRecipe {
     image?: string;
     ingredients: string[];
     instruction: string;
-    duration?: {
-        time: number;
-        dimension: string;
-    };
+    duration: number;
+    category: string;
 }

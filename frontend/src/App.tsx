@@ -3,7 +3,6 @@ import {Routes, Route} from "react-router-dom";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import axios from "axios";
-
 import './App.css';
 import type {IRecipe} from "./interfaces/IRecipe.ts";
 import NavBar from "./components/NavBar.tsx";
@@ -12,13 +11,11 @@ import Recipes from "./pages/Recipes.tsx";
 import AiSearch from "./components/AiSearch.tsx";
 import Recipe from "./pages/recipe/Recipe.tsx";
 import Footer from "./components/footer/Footer.tsx";
-
-
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 
 function App() {
-    const [recipes, setRecipes] = useState <IRecipe[]>(); 
+    const [recipes, setRecipes] = useState <IRecipe[]>([]);
 
 const [user, setUser] = useState<string | undefined | null>();
 
@@ -95,19 +92,24 @@ const [user, setUser] = useState<string | undefined | null>();
 
   return (
     <>
-        <NavBar />
-        <button onClick={login}>Login</button>
-        <button onClick={logout}>Logout</button>
+        <NavBar login={login} logout={logout} />
+
+        {/*<button onClick={login}>Login</button>*/}
+        {/*<button onClick={logout}>Logout</button>*/}
 
         <Container maxWidth={false} disableGutters>
             <Box>
                 <Routes>
                     <Route path={'/'} element={<Home />} />
-                    <Route path={'/recipes'} element={recipes && <Recipes recipes={recipes} />} />
+
+                    {/*<Route path={'/recipes'} element={recipes && <Recipes recipes={recipes} />} />*/}
+                    <Route path="/recipes" element={<Recipes recipes={recipes} />} />
+
                     <Route path={"/aisearch"} element={<AiSearch/>}/>
                     <Route path={'/recipe'} element={<Recipe recipe={recipe} />} />
                     <Route element={<ProtectedRoute user={user} />}>
-                        <Route>Dashboard</Route>
+                    <Route>Dashboard</Route>
+
                     </Route>
                 </Routes>
             </Box>
