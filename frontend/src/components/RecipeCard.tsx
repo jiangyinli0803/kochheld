@@ -37,7 +37,7 @@ function RecipeCard(props: Props) {
                             </Typography>
                             <Box component={'div'} sx={{display: 'flex', alignItems: 'center'}}>
                                 <Typography variant="caption" fontSize={'inherit'} sx={{color: 'text.secondary', paddingTop: '2px'}}>
-                                    {recipe.duration && recipe.duration} Min.
+                                    {recipe.duration} Min.
                                 </Typography>
                                 <TimerOutlinedIcon fontSize={'small'} sx={{marginLeft: '.2rem'}}></TimerOutlinedIcon>
                             </Box>
