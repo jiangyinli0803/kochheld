@@ -32,7 +32,7 @@ function App() {
     }
 
     const loadUser = ()=>{
-            axios.get("/api/auth/me")
+            axios.get("/api/auth/me", {withCredentials: true})
               .then(response => setUser(response.data))
                 .catch(() => setUser(null))
     }
