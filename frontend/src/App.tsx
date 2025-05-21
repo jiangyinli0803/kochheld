@@ -18,26 +18,28 @@ import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 
 function App() {
-    const [recipes, setRecipes] = useState <IRecipe[]>();
+    const [recipes, setRecipes] = useState <IRecipe[]>(); 
+
 const [user, setUser] = useState<string | undefined | null>();
+
     function login(){
         const host:string = window.location.host === "localhost:5173" ?
-            "http://localhost:8080/"
+            "http://localhost:8080"
             :
-            window.location.origin
+            "https://kochheld.onrender.com"
         window.open(host + "/oauth2/authorization/github", "_self")
     }
 
     function logout(){
         const host:string = window.location.host === "localhost:5173" ?
-            "http://localhost:8080/"
+            "http://localhost:8080"
             :
-            window.location.origin
+            "https://kochheld.onrender.com"
         window.open(host + "/logout", "_self")
     }
 
     const loadUser = ()=>{
-            axios.get("/api/auth")
+            axios.get("/api/auth/me")
               .then(response => setUser(response.data))
                 .catch(() => setUser(null))
     }
