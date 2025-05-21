@@ -55,7 +55,7 @@ jobs:
           - name: Upload app.jar
             uses: actions/upload-artifact@v4
             with:
-                name: app-jar
+                name: app.jar
                 path: backend/target/app.jar
 
   push-to-docker-hub:
