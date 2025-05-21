@@ -200,9 +200,9 @@ export default function NavBar({ logout }: NavBarProps) {
                     <ListItemIcon><MenuBookIcon /></ListItemIcon>
                     <ListItemText primary="AI-Rezept" />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/recipe">
+                <ListItemButton component={Link} to="/recipes">
                     <ListItemIcon><RecipeIcon /></ListItemIcon>
-                    <ListItemText primary="Recipe" />
+                    <ListItemText primary="Recipes" />
                 </ListItemButton>
             </List>
         </Box>
