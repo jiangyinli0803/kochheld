@@ -52,7 +52,7 @@ jobs:
           - name: Build Backend mit Maven
             run: mvn -B package --file backend/pom.xml
 
-          - name: Upload App.jar
+          - name: Upload app.jar
             uses: actions/upload-artifact@v4
             with:
                 name: app-jar
