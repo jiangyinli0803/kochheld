@@ -35,7 +35,7 @@ class RecipeServiceTest {
     );
 
     @Test
-    void findRecipes_shouldReturnListOfRecipes_whenIsCalled() throws Exception {
+    void findRecipes_shouldReturnListOfRecipes_whenIsCalled() {
         // GIVEN
         List<Recipe> expected = List.of(recipe);
         when(mockRepo.findAll()).thenReturn(expected);
@@ -46,7 +46,7 @@ class RecipeServiceTest {
     }
 
     @Test
-    void findRecipes_shouldReturnEmptyList_whenIsCalled() throws Exception {
+    void findRecipes_shouldReturnEmptyList_whenIsCalled() {
         // GIVEN
         List<Recipe> expected = Collections.emptyList();
         Mockito.when(mockRepo.findAll()).thenReturn(expected);
@@ -57,7 +57,7 @@ class RecipeServiceTest {
     }
 
     @Test
-    void findRecipesByCategory_shouldReturnListOfCategory_whenIsCalled() throws Exception {
+    void findRecipesByCategory_shouldReturnListOfCategory_whenIsCalled() {
         // GIVEN
         List<Recipe> expected = List.of(recipe);
         when(mockRepo.findByCategory(Category.LUNCH)).thenReturn(expected);
@@ -69,8 +69,6 @@ class RecipeServiceTest {
 
     @Test
     void findRecipesByCategory_shouldThrowException_whenGetInvalidValue() {
-        // GIVEN
-        List<Recipe> expected = List.of(recipe);
         // WHEN
         try {
             recipeService.findRecipesByCategory("TEATIME");
