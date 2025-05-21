@@ -20,10 +20,12 @@ import BrunchDiningIcon from '@mui/icons-material/BrunchDining';
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import CakeIcon from '@mui/icons-material/Cake';
 import PublicIcon from '@mui/icons-material/Public';
+import MenuBookIcon from '@mui/icons-material/MenuBook'; // Beispielicon für AI-Rezept
+import RecipeIcon from '@mui/icons-material/Receipt';    // Beispielicon für Recipe
+import CottageIcon from '@mui/icons-material/Cottage';
 import LogoKochHeld from '../assets/images/LogoKochHeld.png';
 import { Link, useNavigate } from "react-router-dom";
 import { ListItemButton } from '@mui/material';
-import CottageIcon from '@mui/icons-material/Cottage';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -76,11 +78,10 @@ const LogoContainer = styled('div')(({ theme }) => ({
 }));
 
 type NavBarProps = {
-    login: () => void;
     logout: () => void;
 };
 
-export default function NavBar({ login, logout }: NavBarProps) {
+export default function NavBar({ logout }: NavBarProps) {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -107,7 +108,11 @@ export default function NavBar({ login, logout }: NavBarProps) {
     };
 
     const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-        if (event.type === 'keydown' && ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')) {
+        if (
+            event.type === 'keydown' &&
+            ((event as React.KeyboardEvent).key === 'Tab' ||
+                (event as React.KeyboardEvent).key === 'Shift')
+        ) {
             return;
         }
         setDrawerOpen(open);
@@ -129,7 +134,7 @@ export default function NavBar({ login, logout }: NavBarProps) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={() => { handleLogin(); }}>Log In</MenuItem>
+            <MenuItem onClick={handleLogin}>Log In</MenuItem>
             <MenuItem onClick={() => { logout(); handleMenuClose(); }}>Log Out</MenuItem>
         </Menu>
     );
@@ -146,7 +151,13 @@ export default function NavBar({ login, logout }: NavBarProps) {
             onClose={handleMobileMenuClose}
         >
             <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton size="large" aria-label="account of current user" aria-controls="primary-search-account-menu" aria-haspopup="true" color="inherit">
+                <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="primary-search-account-menu"
+                    aria-haspopup="true"
+                    color="inherit"
+                >
                     <AccountCircle />
                 </IconButton>
                 <p>Profile</p>
@@ -185,6 +196,14 @@ export default function NavBar({ login, logout }: NavBarProps) {
                     <ListItemIcon><PublicIcon /></ListItemIcon>
                     <ListItemText primary="Weltküche" />
                 </ListItemButton>
+                <ListItemButton component={Link} to="/aisearch">
+                    <ListItemIcon><MenuBookIcon /></ListItemIcon>
+                    <ListItemText primary="AI-Rezept" />
+                </ListItemButton>
+                <ListItemButton component={Link} to="/recipe">
+                    <ListItemIcon><RecipeIcon /></ListItemIcon>
+                    <ListItemText primary="Recipe" />
+                </ListItemButton>
             </List>
         </Box>
     );
@@ -193,36 +212,68 @@ export default function NavBar({ login, logout }: NavBarProps) {
         <Box sx={{ flexGrow: 1, width: '100%' }}>
             <AppBar position="fixed" sx={{ backgroundColor: '#3B4D17', width: '100%' }}>
                 <Toolbar>
-                    <IconButton size="large" edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }} onClick={toggleDrawer(true)}>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="open drawer"
+                        sx={{ mr: 2 }}
+                        onClick={toggleDrawer(true)}
+                    >
                         <MenuIcon sx={{ color: '#FBFAF7' }} />
                     </IconButton>
                     <LogoContainer>
-                        <Link to="/"><img src={LogoKochHeld} alt="KochHeld Logo" style={{ maxWidth: '50%', maxHeight: '50%', objectFit: 'contain', cursor: 'pointer' }} /></Link>
+                        <Link to="/">
+                            <img
+                                src={LogoKochHeld}
+                                alt="KochHeld Logo"
+                                style={{ maxWidth: '50%', maxHeight: '50%', objectFit: 'contain', cursor: 'pointer' }}
+                            />
+                        </Link>
                     </LogoContainer>
                     <Search>
-                        <SearchIconWrapper><SearchIcon /></SearchIconWrapper>
+                        <SearchIconWrapper>
+                            <SearchIcon />
+                        </SearchIconWrapper>
                         <StyledInputBase placeholder="Finde dein Rezept" inputProps={{ 'aria-label': 'search' }} />
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton size="large" edge="end" aria-label="account of current user" aria-controls={menuId} aria-haspopup="true" onClick={handleProfileMenuOpen} color="inherit">
+                        <IconButton
+                            size="large"
+                            edge="end"
+                            aria-label="account of current user"
+                            aria-controls={menuId}
+                            aria-haspopup="true"
+                            onClick={handleProfileMenuOpen}
+                            color="inherit"
+                        >
                             <AccountCircle sx={{ color: '#FBFAF7' }} />
                         </IconButton>
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton size="large" aria-label="show more" aria-controls={mobileMenuId} aria-haspopup="true" onClick={handleMobileMenuOpen} color="inherit">
+                        <IconButton
+                            size="large"
+                            aria-label="show more"
+                            aria-controls={mobileMenuId}
+                            aria-haspopup="true"
+                            onClick={handleMobileMenuOpen}
+                            color="inherit"
+                        >
                             <MoreIcon sx={{ color: '#FBFAF7' }} />
                         </IconButton>
                     </Box>
                 </Toolbar>
             </AppBar>
-            <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>{menuList}</Drawer>
+            <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+                {menuList}
+            </Drawer>
             {renderMobileMenu}
             {renderMenu}
-            <ul className="navi">
+            <ul className="navi" style={{ display: 'flex', gap: 16, listStyle: 'none', padding: 0, marginTop: 64 }}>
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/aisearch">AI-Rezept</Link></li>
-                <li><Link to="/recipe">Recipe</Link></li>
+                <li><Link to="/aisearch">AI-Rezepte</Link></li>
+                <li><Link to="/recipes">Rezepte</Link></li>
             </ul>
         </Box>
     );
