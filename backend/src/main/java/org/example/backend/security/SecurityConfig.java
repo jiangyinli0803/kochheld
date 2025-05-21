@@ -20,8 +20,8 @@ public class SecurityConfig {
 //                        .requestMatchers("/api/secured").authenticated()
                           .anyRequest().permitAll()
                 )
-                .logout(l -> l.logoutSuccessUrl("http://localhost:5173"))
-                .oauth2Login(o -> o.defaultSuccessUrl("http://localhost:5173"));
+                .logout(l -> l.logoutSuccessUrl("https://kochheld.onrender.com/"))
+                .oauth2Login(o -> o.defaultSuccessUrl("https://kochheld.onrender.com/"));
         return http.build();
     }
 
