@@ -1,10 +1,15 @@
 package org.example.backend.controller;
 
-import org.example.backend.service.RecipeService;
 import org.springframework.web.bind.annotation.*;
 
+import org.example.backend.model.Recipe;
+import org.example.backend.service.RecipeService;
+
+import java.util.List;
+
+
 @RestController
-@RequestMapping("/api/recipe")
+@RequestMapping("/api")
 public class RecipeController {
 
     private final RecipeService recipeService;
@@ -13,10 +18,21 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-//    @GetMapping
-//    public List<Recipe> getAll() {
-//        return recipeService.findAllRecipe();
-//    }
+    @GetMapping("/recipes")
+    public List<Recipe> getRecipes() {
+        return recipeService.findRecipes();
+    }
+
+    @GetMapping("/recipes/{category}")
+    public List<Recipe> getRecipesByCategory(@PathVariable String category) {
+        return recipeService.findRecipesByCategory(category);
+    }
+
+    @GetMapping("/recipe/{id}")
+    public Recipe getRecipeByID(@PathVariable String id) {
+        return recipeService.findRecipeByID(id);
+    }
+
 //
 //    @PostMapping("/add")
 //    public Recipe createRecipe(@RequestBody RecipeDto recipeDto) {
