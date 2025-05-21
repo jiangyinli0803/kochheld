@@ -15,13 +15,13 @@ import ProtectedRoute from "./components/ProtectedRoute.tsx";
 function App() {
     const [user, setUser] = useState<string | undefined | null>();
 
-    // function login(){
-    //     const host:string = window.location.host === "localhost:5173" ?
-    //         "http://localhost:8080"
-    //         :
-    //         "https://kochheld.onrender.com"
-    //     window.open(host + "/oauth2/authorization/github", "_self")
-    // }
+    function login(){
+     const host:string = window.location.host === "localhost:5173" ?
+       "http://localhost:8080"
+       :
+      "https://kochheld.onrender.com"
+    window.open(host + "/oauth2/authorization/github", "_self")
+    }
 
     function logout(){
         const host:string = window.location.host === "localhost:5173" ?
@@ -43,7 +43,7 @@ function App() {
 
   return (
     <>
-        <NavBar logout={logout} />
+        <NavBar login={login} logout={logout} />
         <Routes>
             <Route path={'/recipes/breakfast'} element={<Recipes category={'BREAKFAST'} />} />
             <Route path={'/recipes/lunch'} element={<Recipes category={'LUNCH'} />} />
