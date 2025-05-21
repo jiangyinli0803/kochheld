@@ -188,37 +188,44 @@ export default function NavBar() {
             onKeyDown={toggleDrawer(false)}
         >
             <List>
+                <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <ListItemButton>
                     <ListItemIcon>
                         <CottageIcon/>
                     </ListItemIcon>
                     <ListItemText primary="Home" />
                 </ListItemButton>
-                <ListItemButton>
+                </Link>
+
+                <ListItemButton component={Link} to="/recipes?category=fruehstueck">
                     <ListItemIcon>
                         <BrunchDiningIcon />
                     </ListItemIcon>
                     <ListItemText primary="Frühstück" />
                 </ListItemButton>
-                <ListItemButton>
+
+                <ListItemButton component={Link} to="/recipes?category=mittagessen">
                     <ListItemIcon>
                         <RestaurantIcon />
                     </ListItemIcon>
                     <ListItemText primary="Mittagessen" />
                 </ListItemButton>
-                <ListItemButton>
+
+                <ListItemButton component={Link} to="/recipes?category=abendessen">
                     <ListItemIcon>
                         <DinnerDiningIcon />
                     </ListItemIcon>
                     <ListItemText primary="Abendessen" />
                 </ListItemButton>
-                <ListItemButton>
+
+                <ListItemButton component={Link} to="/recipes?category=snacks">
                     <ListItemIcon>
                         <CakeIcon />
                     </ListItemIcon>
                     <ListItemText primary="Snacks" />
                 </ListItemButton>
-                <ListItemButton>
+
+                <ListItemButton component={Link} to="/recipes?category=weltkueche">
                     <ListItemIcon>
                         <PublicIcon />
                     </ListItemIcon>

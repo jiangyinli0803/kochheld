@@ -18,7 +18,7 @@ import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 
 function App() {
-    const [recipes, setRecipes] = useState <IRecipe[]>(); 
+    const [recipes, setRecipes] = useState <IRecipe[]>([]);
 
 const [user, setUser] = useState<string | undefined | null>();
 
@@ -99,11 +99,16 @@ const [user, setUser] = useState<string | undefined | null>();
             <Box>
                 <Routes>
                     <Route path={'/'} element={<Home />} />
-                    <Route path={'/recipes'} element={recipes && <Recipes recipes={recipes} />} />
+
+                    {/*<Route path={'/recipes'} element={recipes && <Recipes recipes={recipes} />} />*/}
+                    <Route path="/recipes" element={<Recipes recipes={recipes} />} />
+
                     <Route path={"/aisearch"} element={<AiSearch/>}/>
                     <Route path={'/recipe'} element={<Recipe recipe={recipe} />} />
                     <Route element={<ProtectedRoute user={user} />}>
-                        <Route>Dashboard</Route>
+                    <Route>Dashboard</Route>
+
+
                     </Route>
                 </Routes>
             <Footer />
