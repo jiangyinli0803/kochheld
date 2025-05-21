@@ -1,4 +1,4 @@
-package org.example.backend.exeption;
+package org.example.backend.exception;
 
 public class RecipeNotFoundException  extends RuntimeException{
 
