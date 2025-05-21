@@ -4,8 +4,11 @@ import axios from "axios";
 
 import './Recipe.css';
 import type {IRecipe} from "../../interfaces/IRecipe.ts";
+
+import ListCards, {sampleRecipes} from "../../components/listCards/ListCards.tsx";
 import bgImage from '../../assets/images/background.png';
 import {useEffect} from "react";
+
 
 
 const Recipe: React.FC = () => {
@@ -45,7 +48,6 @@ const Recipe: React.FC = () => {
                                 {entry ? entry.description : recipe && recipe.description}
                             </p>
                         </div>
-
                         <div className="ingredients">
                             <h3>Inhaltsstoffe:</h3>
                             <ol>
@@ -74,11 +76,12 @@ const Recipe: React.FC = () => {
                     <p>Dauer: {entry ? entry.duration : recipe && recipe.duration} Min.</p>
                 </div>
             </div>
+            <div className="list-wrapper" style={{ margin: "3rem 0" }}>
+                <ListCards list={sampleRecipes} />
+            </div>
   </div>
     );
 };
-
-
 
 
 export default Recipe;
