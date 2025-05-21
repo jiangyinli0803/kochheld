@@ -1,10 +1,8 @@
 import {useEffect, useState} from 'react';
 import {Routes, Route} from "react-router-dom";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
 import axios from "axios";
+
 import './App.css';
-import type {IRecipe} from "./interfaces/IRecipe.ts";
 import NavBar from "./components/NavBar.tsx";
 import Home from "./pages/home/Home.tsx";
 import Recipes from "./pages/Recipes.tsx";
@@ -15,16 +13,14 @@ import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 
 function App() {
-    const [recipes, setRecipes] = useState <IRecipe[]>([]);
-
-const [user, setUser] = useState<string | undefined | null>();
+    const [user, setUser] = useState<string | undefined | null>();
 
     function login(){
-        const host:string = window.location.host === "localhost:5173" ?
-            "http://localhost:8080"
-            :
-            "https://kochheld.onrender.com"
-        window.open(host + "/oauth2/authorization/github", "_self")
+     const host:string = window.location.host === "localhost:5173" ?
+       "http://localhost:8080"
+       :
+      "https://kochheld.onrender.com"
+    window.open(host + "/oauth2/authorization/github", "_self")
     }
 
     function logout(){
@@ -43,30 +39,8 @@ const [user, setUser] = useState<string | undefined | null>();
 
     useEffect(() => {
         loadUser()
-
-        const testRecipes = [];
-        for (let i = 0; i < 20; i++) {
-            testRecipes.push({
-                id: '123',
-                name: 'Testgericht',
-                description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                image: 'https://www.fitforfun.de/files/images/202102/1/kleine-kueche-wenig-zeit-so-gelingen-die-one-pot-gerichte,468455_1x1_xl.jpg',
-                ingredients: [
-                    'Tomaten',
-                    'Zwiebeln',
-                    'Pasta',
-                    'Mozarella',
-                    'Basilikum'
-                ],
-                instruction: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
-                duration: {
-                    time: 120,
-                    dimension: 'MIN'
-                }
-            });
-        }
-        setRecipes(testRecipes as IRecipe[])
     }, []);
+
 
     const recipe: IRecipe =
         {
@@ -90,33 +64,27 @@ const [user, setUser] = useState<string | undefined | null>();
             }
         };
 
+
+
   return (
     <>
         <NavBar login={login} logout={logout} />
-
-        {/*<button onClick={login}>Login</button>*/}
-        {/*<button onClick={logout}>Logout</button>*/}
-
-        <Container maxWidth={false} disableGutters>
-            <Box>
-                <Routes>
-                    <Route path={'/'} element={<Home />} />
-
-                    {/*<Route path={'/recipes'} element={recipes && <Recipes recipes={recipes} />} />*/}
-                    <Route path="/recipes" element={<Recipes recipes={recipes} />} />
-
-                    <Route path={"/aisearch"} element={<AiSearch/>}/>
-                    <Route path={'/recipe'} element={<Recipe recipe={recipe} />} />
-                    <Route element={<ProtectedRoute user={user} />}>
-                    <Route>Dashboard</Route>
-
-                    </Route>
-                </Routes>
-            </Box>
-        </Container>
+        <Routes>
+            <Route path={'/recipes/breakfast'} element={<Recipes category={'BREAKFAST'} />} />
+            <Route path={'/recipes/lunch'} element={<Recipes category={'LUNCH'} />} />
+            <Route path={'/recipes/dinner'} element={<Recipes category={'DINNER'} />} />
+            <Route path={'/recipes/snack'} element={<Recipes category={'SNACK'} />} />
+            <Route path="/recipes" element={<Recipes />} />
+            <Route path={'/recipe/:id'} element={<Recipe />} />
+            <Route path={"/aisearch"} element={<AiSearch/>}/>
+            <Route path={'/'} element={<Home />} />
+            <Route element={<ProtectedRoute user={user} />}>
+                <Route>Dashboard</Route>
+            </Route>
+        </Routes>
         <Footer />
     </>
   )
 }
 
-export default App
+export default App;
