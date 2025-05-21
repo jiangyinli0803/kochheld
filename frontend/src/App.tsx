@@ -86,7 +86,11 @@ const [user, setUser] = useState<string | undefined | null>();
                 "und etwas Olivenöl gut verrühren. Diese Sauce sorgt für den frischen, aromatischen Geschmack und bildet die Basis auf dem Pizzateig. Den gegangenen Teig auf einer leicht bemehlten " +
                 "Fläche dünn ausrollen und auf ein Backblech oder den heißen Pizzastein legen. Die Tomatensauce gleichmäßig darauf verteilen. Den Mozzarella in kleine Stücke zupfen und großzügig auf der " +
                 "Sauce verteilen. Wer mag, kann jetzt auch ein paar frische Basilikumblätter darauf legen – sie verleihen der Pizza ein intensives, leicht würziges Aroma. Die Pizza wird im heißen Ofen etwa 7" +
-                " bis 10 Minuten gebacken, bis der Rand goldbraun und knusprig ist und der Mozzarella schön geschmolzen und leicht gebräunt ist."
+                " bis 10 Minuten gebacken, bis der Rand goldbraun und knusprig ist und der Mozzarella schön geschmolzen und leicht gebräunt ist.",
+            duration: {
+                time: 120,
+                dimension: 'MIN'
+            }
         };
 
   return (

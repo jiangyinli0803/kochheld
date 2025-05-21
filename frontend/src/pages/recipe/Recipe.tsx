@@ -3,6 +3,7 @@ import * as React from "react";
 
 import './Recipe.css';
 import type {IRecipe} from "../../interfaces/IRecipe.ts";
+import ListCards, {sampleRecipes} from "../../components/listCards/ListCards.tsx";
 
 
 type Props = {
@@ -29,7 +30,6 @@ const Recipe: React.FC<Props> = (props) => {
                             <h2 className="title">{props.recipe.name}</h2>
                             <p>{props.recipe.description}</p>
                         </div>
-
                         <div className="ingredients">
                             <h3>Inhaltsstoffe:</h3>
                             <ol>
@@ -46,11 +46,11 @@ const Recipe: React.FC<Props> = (props) => {
                     <p>{props.recipe.instruction}</p>
                 </div>
             </div>
+            <div className="list-wrapper" style={{ margin: "3rem 0" }}>
+                <ListCards list={sampleRecipes} />
+            </div>
   </div>
     );
 };
-
-
-
 
 export default Recipe;
