@@ -83,7 +83,13 @@ const LogoContainer = styled('div')(({ theme }) => ({
     marginRight: theme.spacing(2),
 }));
 
-export default function NavBar() {
+type NavBarProps = {
+    login: () => void;
+    logout: () => void;
+};
+
+export default function NavBar({ login, logout }: NavBarProps) {
+
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
         React.useState<null | HTMLElement>(null);
@@ -141,8 +147,8 @@ export default function NavBar() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Log In</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+            <MenuItem onClick={() => { login(); handleMenuClose(); }}>Log In</MenuItem>
+            <MenuItem onClick={() => { logout(); handleMenuClose(); }}>Log Out</MenuItem>
         </Menu>
     );
 
@@ -175,8 +181,11 @@ export default function NavBar() {
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
-            <MenuItem onClick={handleMenuClose}>Log In</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+
+            <MenuItem onClick={() => { login(); handleMobileMenuClose(); }}>Log In</MenuItem>
+            <MenuItem onClick={() => { logout(); handleMobileMenuClose(); }}>Log Out</MenuItem>
+
+
         </Menu>
     );
 

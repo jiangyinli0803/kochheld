@@ -3,7 +3,6 @@ import {Routes, Route} from "react-router-dom";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import axios from "axios";
-
 import './App.css';
 import type {IRecipe} from "./interfaces/IRecipe.ts";
 import NavBar from "./components/NavBar.tsx";
@@ -12,8 +11,6 @@ import Recipes from "./pages/Recipes.tsx";
 import AiSearch from "./components/AiSearch.tsx";
 import Recipe from "./pages/recipe/Recipe.tsx";
 import Footer from "./components/footer/Footer.tsx";
-
-
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 
@@ -91,9 +88,10 @@ const [user, setUser] = useState<string | undefined | null>();
 
   return (
     <>
-        <NavBar />
-        <button onClick={login}>Login</button>
-        <button onClick={logout}>Logout</button>
+        <NavBar login={login} logout={logout} />
+
+        {/*<button onClick={login}>Login</button>*/}
+        {/*<button onClick={logout}>Logout</button>*/}
 
         <Container>
             <Box>
@@ -107,7 +105,6 @@ const [user, setUser] = useState<string | undefined | null>();
                     <Route path={'/recipe'} element={<Recipe recipe={recipe} />} />
                     <Route element={<ProtectedRoute user={user} />}>
                     <Route>Dashboard</Route>
-
 
                     </Route>
                 </Routes>
