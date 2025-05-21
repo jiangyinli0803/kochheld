@@ -19,7 +19,6 @@ import RestaurantIcon from '@mui/icons-material/Restaurant';
 import BrunchDiningIcon from '@mui/icons-material/BrunchDining';
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import CakeIcon from '@mui/icons-material/Cake';
-import PublicIcon from '@mui/icons-material/Public';
 import MenuBookIcon from '@mui/icons-material/MenuBook'; // Beispielicon für AI-Rezept
 import RecipeIcon from '@mui/icons-material/Receipt';    // Beispielicon für Recipe
 import CottageIcon from '@mui/icons-material/Cottage';
@@ -83,7 +82,8 @@ type NavBarProps = {
     logout: () => void;
 };
 
-export default function NavBar({login,logout }: NavBarProps) {
+
+export default function NavBar({login, logout }: NavBarProps) {
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -120,7 +120,9 @@ export default function NavBar({login,logout }: NavBarProps) {
         setDrawerOpen(open);
     };
 
+
      const menuId = 'primary-search-account-menu';
+
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
@@ -131,6 +133,8 @@ export default function NavBar({login,logout }: NavBarProps) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
+
+
             <MenuItem onClick={() => { login(); handleMenuClose(); }}>Login</MenuItem>
             <MenuItem onClick={() => { logout(); handleMenuClose(); }}>Logout</MenuItem>
         </Menu>
@@ -159,6 +163,7 @@ export default function NavBar({login,logout }: NavBarProps) {
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
+
             <MenuItem onClick={() => { login(); handleMenuClose(); }}>Login</MenuItem>
             <MenuItem onClick={() => { logout(); handleMenuClose(); }}>Logout</MenuItem>
         </Menu>
@@ -173,6 +178,10 @@ export default function NavBar({login,logout }: NavBarProps) {
                         <ListItemText primary="Home" />
                     </ListItemButton>
                 </Link>
+                <ListItemButton component={Link} to="/recipes">
+                    <ListItemIcon><RecipeIcon /></ListItemIcon>
+                    <ListItemText primary="Rezepte" />
+                </ListItemButton>
                 <ListItemButton component={Link} to="/recipes/breakfast">
                     <ListItemIcon><BrunchDiningIcon /></ListItemIcon>
                     <ListItemText primary="Frühstück" />
@@ -185,21 +194,13 @@ export default function NavBar({login,logout }: NavBarProps) {
                     <ListItemIcon><DinnerDiningIcon /></ListItemIcon>
                     <ListItemText primary="Abendessen" />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/recipes/snacks">
+                <ListItemButton component={Link} to="/recipes/snack">
                     <ListItemIcon><CakeIcon /></ListItemIcon>
                     <ListItemText primary="Snacks" />
-                </ListItemButton>
-                <ListItemButton component={Link} to="/recipes/world-cuisine">
-                    <ListItemIcon><PublicIcon /></ListItemIcon>
-                    <ListItemText primary="Weltküche" />
                 </ListItemButton>
                 <ListItemButton component={Link} to="/aisearch">
                     <ListItemIcon><MenuBookIcon /></ListItemIcon>
                     <ListItemText primary="AI-Rezept" />
-                </ListItemButton>
-                <ListItemButton component={Link} to="/recipes">
-                    <ListItemIcon><RecipeIcon /></ListItemIcon>
-                    <ListItemText primary="Recipes" />
                 </ListItemButton>
             </List>
         </Box>
@@ -267,11 +268,6 @@ export default function NavBar({login,logout }: NavBarProps) {
             </Drawer>
             {renderMobileMenu}
             {renderMenu}
-            <ul className="navi" style={{ display: 'flex', gap: 16, listStyle: 'none', padding: 0, marginTop: 64 }}>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/aisearch">AI-Rezepte</Link></li>
-                <li><Link to="/recipes">Rezepte</Link></li>
-            </ul>
-        </Box>
+      </Box>
     );
 }
