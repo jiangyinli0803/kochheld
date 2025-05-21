@@ -24,8 +24,9 @@ import MenuBookIcon from '@mui/icons-material/MenuBook'; // Beispielicon für AI
 import RecipeIcon from '@mui/icons-material/Receipt';    // Beispielicon für Recipe
 import CottageIcon from '@mui/icons-material/Cottage';
 import LogoKochHeld from '../assets/images/LogoKochHeld.png';
-import { Link, useNavigate } from "react-router-dom";
-import { ListItemButton } from '@mui/material';
+import { Link } from 'react-router-dom';
+import {ListItemButton} from "@mui/material";
+
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -78,11 +79,12 @@ const LogoContainer = styled('div')(({ theme }) => ({
 }));
 
 type NavBarProps = {
+    login: () => void;
     logout: () => void;
 };
 
-export default function NavBar({ logout }: NavBarProps) {
-    const navigate = useNavigate();
+export default function NavBar({login,logout }: NavBarProps) {
+
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
     const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -118,12 +120,7 @@ export default function NavBar({ logout }: NavBarProps) {
         setDrawerOpen(open);
     };
 
-    const handleLogin = () => {
-        navigate("/login");
-        handleMenuClose();
-    };
-
-    const menuId = 'primary-search-account-menu';
+     const menuId = 'primary-search-account-menu';
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
@@ -134,8 +131,8 @@ export default function NavBar({ logout }: NavBarProps) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleLogin}>Log In</MenuItem>
-            <MenuItem onClick={() => { logout(); handleMenuClose(); }}>Log Out</MenuItem>
+            <MenuItem onClick={() => { login(); handleMenuClose(); }}>Login</MenuItem>
+            <MenuItem onClick={() => { logout(); handleMenuClose(); }}>Logout</MenuItem>
         </Menu>
     );
 
@@ -162,8 +159,8 @@ export default function NavBar({ logout }: NavBarProps) {
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
-            <MenuItem onClick={handleLogin}>Log In</MenuItem>
-            <MenuItem onClick={() => { logout(); handleMenuClose(); }}>Log Out</MenuItem>
+            <MenuItem onClick={() => { login(); handleMenuClose(); }}>Login</MenuItem>
+            <MenuItem onClick={() => { logout(); handleMenuClose(); }}>Logout</MenuItem>
         </Menu>
     );
 
