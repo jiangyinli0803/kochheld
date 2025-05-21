@@ -78,6 +78,7 @@ const LogoContainer = styled('div')(({ theme }) => ({
 }));
 
 type NavBarProps = {
+    login: () => void;
     logout: () => void;
 };
 
