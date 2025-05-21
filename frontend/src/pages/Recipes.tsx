@@ -2,15 +2,22 @@ import Grid from '@mui/material/Grid2';
 
 import type {IRecipe} from "../interfaces/IRecipe.ts";
 import RecipeCard from "../components/RecipeCard.tsx";
-
-type Props = {
-    recipes: IRecipe[];
-};
+import axios from "axios";
+import {useEffect, useState} from "react";
 
 
-function Recipes(props: Props) {
-    const recipes: IRecipe[] = props.recipes;
-    // const rows = recipes.length /
+function Recipes() {
+    const [recipes, setRecipes] = useState<IRecipe[]>();
+
+    function getRecipes(): void {
+        axios.get('api/recipes')
+            .then(res => setRecipes(res.data))
+            .catch(error => console.log(error));
+    }
+
+    useEffect(() => {
+        getRecipes();
+    }, []);
 
     return(
         <>
