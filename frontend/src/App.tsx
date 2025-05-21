@@ -7,7 +7,7 @@ import axios from "axios";
 import './App.css';
 import type {IRecipe} from "./interfaces/IRecipe.ts";
 import NavBar from "./components/NavBar.tsx";
-import Home from "./pages/Home.tsx";
+import Home from "./pages/home/Home.tsx";
 import Recipes from "./pages/Recipes.tsx";
 import AiSearch from "./components/AiSearch.tsx";
 import Recipe from "./pages/recipe/Recipe.tsx";
@@ -92,7 +92,7 @@ function App() {
         <button onClick={login}>Login</button>
         <button onClick={logout}>Logout</button>
 
-        <Container>
+        <Container maxWidth={false} disableGutters>
             <Box>
                 <Routes>
                     <Route path={'/'} element={<Home />} />
@@ -103,9 +103,9 @@ function App() {
                         <Route>Dashboard</Route>
                     </Route>
                 </Routes>
-            <Footer />
             </Box>
         </Container>
+        <Footer />
     </>
   )
 }
