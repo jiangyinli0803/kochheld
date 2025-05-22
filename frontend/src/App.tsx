@@ -41,10 +41,6 @@ function App() {
         loadUser()
     }, []);
 
-//axios call directly in the card for delete by id /axioscall - recipe.id
-// give method by props in the recipe.id card
-
-
 
   return (
     <>
