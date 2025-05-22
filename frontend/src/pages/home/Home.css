@@ -2,6 +2,8 @@
     font-family: 'Montserrat Alternates', sans-serif;
     position: relative;
     display: inline-block;
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+    background-color: #fefefe;
 }
 
 
@@ -123,13 +125,16 @@
 }
 
 .image-container {
-    flex: 1;
+    width: 500px;
+    height: 600px;
+    flex-shrink: 0;
 }
 
 .cooking-image {
     width: 100%;
-    border-radius: 16px;
+    height: 100%;
     object-fit: cover;
+    border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -168,6 +173,4 @@
 
 .list-wrapper {
     font-family: 'Montserrat Alternates', sans-serif;
-
 }
-
