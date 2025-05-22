@@ -10,7 +10,7 @@ import AiSearch from "./components/AiSearch.tsx";
 import Recipe from "./pages/recipe/Recipe.tsx";
 import Footer from "./components/footer/Footer.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
-// import Entry from './pages/Entry.tsx';
+import Entry from "./pages/Entry.tsx";
 
 
 function App() {
@@ -56,8 +56,8 @@ function App() {
             <Route path="/recipes" element={<Recipes />} />
             <Route path={'/recipe/:id'} element={<Recipe />} />
             <Route path={"/aisearch"} element={<AiSearch />}/>
+            <Route path={"/entry"} element={<Entry />}/>
             <Route path={'/'} element={<Home />} />
-            {/*<Route path={'/entry'} element={<Entry />} />*/}
             <Route element={<ProtectedRoute user={user} />}>
                 <Route>Dashboard</Route>
             </Route>

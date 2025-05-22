@@ -1,7 +1,6 @@
 package org.example.backend.controller;
 
 import org.example.backend.model.dto.RecipeDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import org.example.backend.model.Recipe;
@@ -36,12 +35,12 @@ public class RecipeController {
     }
 
 
-    @PostMapping("/add")
+    @PostMapping("/recipe")
     public Recipe addRecipe(@RequestBody RecipeDto recipeDto) {
         return recipeService.addRecipe(recipeDto);
     }
 
-    @PutMapping("/recipes/{id}")
+    @PutMapping("/recipe/{id}")
     public Recipe updateRecipe(@PathVariable String id, @RequestBody RecipeDto recipeDto) {
         return recipeService.updateRecipe(id, recipeDto);
     }
