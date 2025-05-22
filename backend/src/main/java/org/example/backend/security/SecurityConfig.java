@@ -16,8 +16,8 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(a -> a
-//                        .requestMatchers("/api/auth/me").authenticated()
-//                        .requestMatchers("/api/secured").authenticated()
+                        .requestMatchers("/api/auth/me").authenticated()
+                       .requestMatchers("/oauth2/**").authenticated()
                           .anyRequest().permitAll()
                 )
                 .logout(l -> l.logoutSuccessUrl("https://kochheld.onrender.com/"))
