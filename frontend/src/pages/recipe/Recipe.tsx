@@ -30,7 +30,7 @@ const Recipe: React.FC = () => {
     return (
         <div
             className="recipe-card-wrapper"
-            style={{ backgroundImage: `url(${bgImage})` }}
+            style={{ backgroundImage: `url(${bgImage})`, paddingTop: '6rem' }}
         >
             <div className="recipe-card">
                 <div className="top-row">

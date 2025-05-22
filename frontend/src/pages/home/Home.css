@@ -4,6 +4,8 @@
     display: inline-block;
     background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
     background-color: #fefefe;
+    padding-top: 56px;
+
 }
 
 
@@ -43,7 +45,8 @@
 
 .trend-title {
     text-align: left;
-    padding: 40px 60px 20px;
+    padding-top: 40px;
+    padding-bottom: 20px;
     font-size: 28px;
     font-family: 'Montserrat Alternates', sans-serif;
     color:  #765638
@@ -53,7 +56,6 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
-    padding: 0 60px 60px;
 }
 
 .recipe-row {
@@ -112,7 +114,8 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -133,6 +136,9 @@
 .cooking-image {
     width: 100%;
     height: 100%;
+    width: 100vw;
+    border-radius: 16px;
+
     object-fit: cover;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
