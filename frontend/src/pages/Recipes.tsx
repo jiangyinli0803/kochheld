@@ -38,7 +38,7 @@ function Recipes(props: Props) {
     return(
         <>
             <Container>
-                <Box>
+                <Box sx={{paddingTop: 12}}>
                     <Grid container columnSpacing={2} rowSpacing={4}>
                         {
                             recipes && recipes.map(recipe => {
