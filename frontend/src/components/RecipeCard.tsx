@@ -20,16 +20,16 @@ function RecipeCard(props: Props) {
 
     return (
         <>
-            <Card sx={{ minWidth: {xs: '100%'}, maxWidth: {sm: 180}}}>
+            <Card sx={{ minWidth: {xs: '100%', sm: 'auto'}, maxWidth: {sm: 180}}}>
                 <CardActionArea>
-                    <Link to={`/recipe/${recipe.id}`} state={{recipe}}>
+                    <Link to={`/recipe/${recipe.id}`} state={{recipe}} style={{textDecoration: 'none'}}>
                         <CardMedia
                             component={'img'}
                             alt={recipe.name}
                             image={recipe.image}
                         />
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
+                            <Typography gutterBottom variant="h5" component="div" color={'#765638'}>
                                 {recipe.name}
                             </Typography>
                             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
@@ -39,7 +39,7 @@ function RecipeCard(props: Props) {
                                 <Typography variant="caption" fontSize={'inherit'} sx={{color: 'text.secondary', paddingTop: '2px'}}>
                                     {recipe.duration} Min.
                                 </Typography>
-                                <TimerOutlinedIcon fontSize={'small'} sx={{marginLeft: '.2rem'}}></TimerOutlinedIcon>
+                                <TimerOutlinedIcon fontSize={'small'} sx={{marginLeft: '.2rem', color: '#765638'}}></TimerOutlinedIcon>
                             </Box>
                         </CardContent>
                     </Link>

@@ -12,6 +12,7 @@ import Footer from "./components/footer/Footer.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import SearchBar from "./components/SearchBar.tsx";
 import Box from "@mui/material/Box";
+import Entry from "./pages/Entry.tsx";
 
 function App() {
 
@@ -69,7 +70,8 @@ function App() {
             <Route path="/recipes" element={<Recipes />} />
             <Route path={'/recipe/:id'} element={<Recipe />} />
             <Route path={"/aisearch"} element={<AiSearch />} />
-            <Route path={"/search/:searchText"} element={<SearchBar />}/>
+            <Route path={"/search/:searchText"} element={<SearchBar />}/>          
+            <Route path={"/entry"} element={<Entry />}/>
             <Route path={'/'} element={<Home />} />
             <Route element={<ProtectedRoute user={user} />}>
                 <Route>Dashboard</Route>

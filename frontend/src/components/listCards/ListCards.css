@@ -2,7 +2,8 @@
     display: flex;
     overflow-x: auto;
     gap: 30px;
-    padding: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
     scroll-snap-type: x mandatory;
     max-width: 100%;
     -webkit-overflow-scrolling: touch;
@@ -26,6 +27,12 @@
     flex-direction: column;
     scroll-snap-align: start;
     flex-shrink: 0;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
 .image-container {
