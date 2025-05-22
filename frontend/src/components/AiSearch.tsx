@@ -29,6 +29,7 @@ export default function AiSearch(){
     return (
         <>
         <div className="search-container">
+            <h2>Suchen Sie Ihr Rezept von AI</h2>
             <form onSubmit={handleSubmit} className="search-form">
                 <input
                     type="search"
@@ -42,7 +43,7 @@ export default function AiSearch(){
             </form>
 
             {aiRecipe && (<div className="recipe-result">
-                <h2>{aiRecipe.title}</h2>
+                <h2 style={{margin: "10px", textAlign: "center", color: "red"}}>{aiRecipe.title}</h2>
                 <img src="https://i.postimg.cc/63YVHySZ/Food-Photo.png" alt="KochHeld Logo" className="recipe-img"/>
                 <div className="recipe-section">
                     <h3>Zutaten</h3>
