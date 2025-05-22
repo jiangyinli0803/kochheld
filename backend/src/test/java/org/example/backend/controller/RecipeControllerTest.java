@@ -115,4 +115,17 @@ class RecipeControllerTest {
                 .andExpect(result -> assertInstanceOf(RuntimeException.class, result.getResolvedException()))
                 .andExpect(result -> assertEquals("Could not find any recipe with category TEATIME", result.getResolvedException().getMessage()));
     }
+
+    @Test
+    void deleteRecipesByName_shouldThrowException_whenIsCalledWithInvalidName() throws Exception {
+        //GIVEN
+        recipeRepo.save(recipe);
+        //THEN
+        mockMvc.perform(delete("/api/recipes/TEATIME"))
+                .andExpect(status().isNotFound())
+                .andExpect(result -> assertInstanceOf(RuntimeException.class, result.getResolvedException()))
+                .andExpect(result -> assertEquals("Could not find any recipe with category TEATIME", result.getResolvedException().getMessage()));
+    }
+
+
 }

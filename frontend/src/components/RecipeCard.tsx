@@ -6,12 +6,14 @@ import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
-
 import type {IRecipe} from "../interfaces/IRecipe.ts";
 import {Link} from "react-router-dom";
+import {Delete} from "@mui/icons-material";
+import {IconButton} from "@mui/material";
 
 type Props = {
   recipe: IRecipe;
+  deleteCard: (id:string) => void;
 };
 
 
@@ -40,6 +42,9 @@ function RecipeCard(props: Props) {
                                     {recipe.duration} Min.
                                 </Typography>
                                 <TimerOutlinedIcon fontSize={'small'} sx={{marginLeft: '.2rem'}}></TimerOutlinedIcon>
+                                <IconButton onClick={() => recipe.id && props.deleteCard(recipe.id)} color="error">
+                                    <Delete />
+                                </IconButton>
                             </Box>
                         </CardContent>
                     </Link>

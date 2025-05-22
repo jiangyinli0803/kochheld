@@ -44,10 +44,10 @@ public class RecipeController {
 //        return recipeService.updateRecipe(id, recipeDto);
 //    }
 //
-//    @DeleteMapping("/{id}")
-//    public Recipe deleteCharacter(@PathVariable String id) {
-//        return recipeService.deleteRecipeById(id);
-//    }
+    @DeleteMapping("/{id}")
+    public Recipe deleteRecipe(@PathVariable String id) {
+        return recipeService.deleteRecipeById(id);
+    }
 //
 //    @GetMapping("/{id}")
 //    public Recipe findById(@PathVariable String id) {

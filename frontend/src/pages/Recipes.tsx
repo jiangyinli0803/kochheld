@@ -26,6 +26,15 @@ function Recipes(props: Props) {
             .catch(error => console.log(error));
     }
 
+    function deleteCard(id: string): void {
+        axios.delete(`/api/recipe/${id}`)
+            .then(() => {
+                setRecipes(prevRecipes =>
+                    prevRecipes ? prevRecipes.filter(recipe => recipe.id !== id) : []
+                );
+            })
+    }
+
     useEffect(() => {
         if (!props.category) {
             getRecipes();
@@ -47,7 +56,7 @@ function Recipes(props: Props) {
                                     size={{xs: 12, sm: 4, md: 3, lg: 2}}
                                     flexGrow={1}
                                 >
-                                    <RecipeCard recipe={recipe} />
+                                    <RecipeCard recipe={recipe} deleteCard={deleteCard} />
                                 </Grid>
                             })
                         }

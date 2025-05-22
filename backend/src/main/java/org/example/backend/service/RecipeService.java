@@ -1,5 +1,6 @@
 package org.example.backend.service;
 
+import org.example.backend.exception.RecipeNotFoundException;
 import org.example.backend.exception.ResourceNotFoundException;
 import org.example.backend.model.Category;
 import org.springframework.stereotype.Service;
@@ -69,12 +70,12 @@ public class RecipeService {
 //        return recipeRepo.save(recipe);
 //    }
 //
-//    public Recipe deleteRecipeById (String id){
-//        Recipe recipe = recipeRepo.findById(id)
-//                .orElseThrow(() -> new RecipeNotFoundException("Recipe id = " + id + "is not found"));
-//        recipeRepo.delete(recipe);
-//        return recipe;
-//    }
+    public Recipe deleteRecipeById (String id){
+        Recipe recipe = recipeRepo.findById(id)
+                .orElseThrow(() -> new RecipeNotFoundException("Recipe id = " + id + "is not found"));
+        recipeRepo.deleteById(id);
+        return recipe;
+    }
 //
 //    public Recipe findById (String id){
 //        return recipeRepo.findById(id)
