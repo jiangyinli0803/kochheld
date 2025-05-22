@@ -10,6 +10,7 @@ import FormControl, {useFormControl} from "@mui/material/FormControl";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormHelperText from "@mui/material/FormHelperText";
 import OutlinedInput from "@mui/material/OutlinedInput";
+import Grid from "@mui/material/Grid2";
 
 
 function MyFormHelperText() {
@@ -46,42 +47,69 @@ function Entry() {
                     <Typography variant={'h3'}>Ergänze unsere Sammlung mit einem neuen Rezept.</Typography>
                     <br />
                     <form onSubmit={handleSubmit}>
-                        <TextField id="name" label="Name" variant="outlined" />
-                        <Box sx={{ minWidth: 120 }}>
-                            <FormControl fullWidth>
-                                <InputLabel id={'category-label'}>Kategorie</InputLabel>
-                                <Select
-                                    id={'category'}
-                                    labelId={'category-label'}
-                                    label={'Kategorie'}
-                                    value={category}
-                                    onChange={handleCategory}
-                                >
-                                    <MenuItem value={'BREAKFAST'}>Frühstück</MenuItem>
-                                    <MenuItem value={'LUNCH'}>Mittagessen</MenuItem>
-                                    <MenuItem value={'DINNER'}>Abendessen</MenuItem>
-                                    <MenuItem value={'SNACK'}>Snack</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Box>
-                        <TextField id="discription" label="Kurzbeschreibung" variant="outlined" multiline />
-                        <FormControl fullWidth>
-                            <InputLabel id={'ingredients-label'}>Zutaten</InputLabel>
-                            <OutlinedInput id="ingredients" label="Zutaten" />
-                            <MyFormHelperText />
-                        </FormControl>
-                        <TextField id="instruction" label="Zubereitung" variant="outlined" />
-                        <TextField
-                            id="duration"
-                            label="Dauer"
-                            variant="outlined"
-                            type={'number'}
-                            slotProps={{
-                                input: {
-                                    endAdornment: <InputAdornment position="end">Min.</InputAdornment>,
-                                },
-                            }}
-                        />
+                        <Grid container columnSpacing={2} sx={{mt: 4, mb: 12}}>
+                            <Grid size={{xs: 12, sm: 7, md: 8}} sx={{mb: 4}}>
+                                <TextField id="name" label="Name" variant="outlined" fullWidth />
+                            </Grid>
+                            <Grid size={{xs: 12, sm: 5, md: 4}} sx={{mb: 4}}>
+                                <Box sx={{ minWidth: 120 }}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id={'category-label'}>Kategorie</InputLabel>
+                                        <Select
+                                            id={'category'}
+                                            labelId={'category-label'}
+                                            label={'Kategorie'}
+                                            value={category}
+                                            onChange={handleCategory}
+                                        >
+                                            <MenuItem value={'BREAKFAST'}>Frühstück</MenuItem>
+                                            <MenuItem value={'LUNCH'}>Mittagessen</MenuItem>
+                                            <MenuItem value={'DINNER'}>Abendessen</MenuItem>
+                                            <MenuItem value={'SNACK'}>Snack</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Box>
+                            </Grid>
+                            <Grid size={{xs: 12, sm: 9, md: 10}} sx={{mb: 1}}>
+                                <FormControl fullWidth>
+                                    <InputLabel id={'ingredients-label'}>Zutaten</InputLabel>
+                                    <OutlinedInput id="ingredients" label="Zutaten" />
+                                    <MyFormHelperText />
+                                </FormControl>
+                            </Grid>
+                            <Grid size={{xs: 12, sm: 3, md: 2}} sx={{mb: 4}}>
+                                <TextField
+                                    id="duration"
+                                    label="Dauer"
+                                    variant="outlined"
+                                    type={'number'}
+                                    slotProps={{
+                                        input: {
+                                            endAdornment: <InputAdornment position="end">Min.</InputAdornment>,
+                                        },
+                                    }}
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid size={12} sx={{mb: 4}}>
+                                <TextField
+                                    id="discription"
+                                    label="Kurzbeschreibung"
+                                    variant="outlined"
+                                    multiline
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid size={12} sx={{mb: 4}}>
+                                <TextField
+                                    id="instruction"
+                                    label="Zubereitung"
+                                    variant="outlined"
+                                    multiline
+                                    fullWidth
+                                />
+                            </Grid>
+                        </Grid>
                     </form>
                 </Box>
             </Container>
