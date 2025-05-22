@@ -12,4 +12,5 @@ public record RecipeDto (
         String description,
         int duration,
         Category category)
+
 { }

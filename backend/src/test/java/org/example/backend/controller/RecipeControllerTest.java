@@ -115,4 +115,26 @@ class RecipeControllerTest {
                 .andExpect(result -> assertInstanceOf(RuntimeException.class, result.getResolvedException()))
                 .andExpect(result -> assertEquals("Could not find any recipe with category TEATIME", result.getResolvedException().getMessage()));
     }
+    @Test
+    void addRecipeControllerTest() throws Exception {
+
+        String requestRecipe = """
+                {
+                "name": "Name",
+                "image": "image",
+                "ingredients": ["ingredients1", "ingredients2"],
+                "instruction": "instruction",
+                "description":"description",
+                "duration": 10,
+                "category": "BREAKFAST"
+                }
+                """;
+        mockMvc.perform(post("/api/add")
+                .contentType("application/json")
+                .content(requestRecipe))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").isNotEmpty())
+                .andExpect(jsonPath("$.name").value("Name"))
+                .andExpect(jsonPath("$.category").value("BREAKFAST"));
+    }
 }
