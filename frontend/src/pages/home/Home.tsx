@@ -78,8 +78,41 @@ function Home() {
                             </div>
                         </div>
                     </div>
+
+                </div>
+                <div className="list-wrapper" style={{ margin: "3rem 0" }}>
+                    <ListCards list={sampleRecipes} />
+                </div>
+
+                <section className="cooking-section">
+                    <div className="image-container">
+                        <img
+                            src="https://images.unsplash.com/photo-1688413176280-918247cfe029?q=80&w=2944&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Kochen mit Freunden"
+                            className="cooking-image"
+                        />
+                    </div>
+                    <div className="text-container">
+                        <h2 className="title">Kochen mit Freunden</h2>
+                        <p>
+                            Gemeinsam kochen, lachen, probieren und genießen – das sind oft die
+                            schönsten Momente im Alltag. Studien zeigen: Wenn wir zusammen essen,
+                            fühlen wir uns weniger gestresst, mehr verbunden und glücklicher.
+                        </p>
+                        <p>
+                            In diesem Artikel geht es um die Magie gemeinsamer Mahlzeiten,
+                            einfache Rezeptideen für Gruppen und wie Kochen zur kleinen Auszeit
+                            im hektischen Alltag wird. Perfekt für Wochenenden, Geburtstage oder
+                            einfach so – weil gutes Essen besser schmeckt, wenn man es teilt.
+                        </p>
+                        <p>
+                            Gemeinsam kochen, lachen, probieren und genießen – das sind oft die
+                            schönsten Momente im Alltag. Studien zeigen: Wenn wir zusammen essen,
+                            fühlen wir uns weniger gestresst, mehr verbunden und...
+                        </p>
                     <div className="list-wrapper" style={{ margin: "3rem 0" }}>
                         <ListCards list={sampleRecipes} />
+
                     </div>
 
                     <section className="cooking-section">
