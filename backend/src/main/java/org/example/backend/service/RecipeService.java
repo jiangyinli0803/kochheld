@@ -1,7 +1,9 @@
 package org.example.backend.service;
 
+import org.example.backend.exception.RecipeNotFoundException;
 import org.example.backend.exception.ResourceNotFoundException;
 import org.example.backend.model.Category;
+import org.example.backend.model.dto.RecipeDto;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -40,34 +42,41 @@ public class RecipeService {
                 .orElseThrow(() -> new ResourceNotFoundException("Task with id '" + id + "' could not been found."));
     }
 
-//    public Recipe createRecipe( RecipeDto recipeDto) {
-//        String id = idService.createId();
-//
-//        Recipe recipe = new Recipe(
-//                id,
-//                recipeDto.name(),
-//                recipeDto.imageUrl(),
-//                recipeDto.ingredients(),
-//                recipeDto.description()
-//        );
-//
-//        return  recipeRepo.save(recipe);
-//    }
-//
-//    public Recipe updateRecipe (String id, RecipeDto recipeDto){
-//
-//        Recipe oldData = recipeRepo.findById(id)
-//                .orElseThrow(() -> new RecipeNotFoundException("Recipe is not found"));
-//
-//        Recipe recipe = new Recipe(
-//                oldData.id(),
-//                recipeDto.name(),
-//                recipeDto.imageUrl(),
-//                recipeDto.ingredients(),
-//                recipeDto.description()
-//        );
-//        return recipeRepo.save(recipe);
-//    }
+    public Recipe addRecipe( RecipeDto recipeDto) {
+        String id = idService.createId();
+
+        Recipe recipe = new Recipe(
+                id,
+                recipeDto.name(),
+                recipeDto.image(),
+                recipeDto.ingredients(),
+                recipeDto.instruction(),
+                recipeDto.description(),
+                recipeDto.duration(),
+                recipeDto.category()
+        );
+        return  recipeRepo.save(recipe);
+    }
+
+
+    public Recipe updateRecipe (String id, RecipeDto recipeDto){
+
+        Recipe oldData = recipeRepo.findById(id)
+                .orElseThrow(() -> new RecipeNotFoundException("Recipe is not found"));
+
+        Recipe recipe = new Recipe(
+                oldData.id(),
+                recipeDto.name(),
+                recipeDto.image(),
+                recipeDto.ingredients(),
+                recipeDto.instruction(),
+                recipeDto.description(),
+                recipeDto.duration(),
+                recipeDto.category()
+        );
+        return recipeRepo.save(recipe);
+    }
+
 //
 //    public Recipe deleteRecipeById (String id){
 //        Recipe recipe = recipeRepo.findById(id)

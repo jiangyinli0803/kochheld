@@ -10,7 +10,7 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MoreIcon from '@mui/icons-material/MoreVert';
+// import MoreIcon from '@mui/icons-material/MoreVert';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
@@ -25,6 +25,7 @@ import CottageIcon from '@mui/icons-material/Cottage';
 import LogoKochHeld from '../assets/images/LogoKochHeld.png';
 import { Link } from 'react-router-dom';
 import {ListItemButton} from "@mui/material";
+import Container from "@mui/material/Container";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -38,6 +39,7 @@ const Search = styled('div')(({ theme }) => ({
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '100%',
+    height: '2rem',
     [theme.breakpoints.up('sm')]: {
         marginLeft: theme.spacing(3),
         width: 'auto',
@@ -45,9 +47,11 @@ const Search = styled('div')(({ theme }) => ({
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
+    padding: theme.spacing(0, 1),
     height: '100%',
     position: 'absolute',
+    top: 0,
+    right: 0,
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
@@ -105,9 +109,9 @@ export default function NavBar({login, logout }: NavBarProps) {
         handleMobileMenuClose();
     };
 
-    const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-        setMobileMoreAnchorEl(event.currentTarget);
-    };
+    // const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    //     setMobileMoreAnchorEl(event.currentTarget);
+    // };
 
     const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
         if (
@@ -209,59 +213,47 @@ export default function NavBar({login, logout }: NavBarProps) {
     return (
         <Box sx={{ flexGrow: 1, width: '100%' }}>
             <AppBar position="fixed" sx={{ backgroundColor: '#3B4D17', width: '100%' }}>
-                <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="open drawer"
-                        sx={{ mr: 2 }}
-                        onClick={toggleDrawer(true)}
-                    >
-                        <MenuIcon sx={{ color: '#FBFAF7' }} />
-                    </IconButton>
-                    <LogoContainer>
-                        <Link to="/">
-                            <img
-                                src={LogoKochHeld}
-                                alt="KochHeld Logo"
-                                style={{ maxWidth: '50%', maxHeight: '50%', objectFit: 'contain', cursor: 'pointer' }}
-                            />
-                        </Link>
-                    </LogoContainer>
-                    <Search>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase placeholder="Finde dein Rezept" inputProps={{ 'aria-label': 'search' }} />
-                    </Search>
-                    <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                <Container>
+                    <Toolbar sx={{"@media (min-width: 0px)": {px: 0}}}>
                         <IconButton
                             size="large"
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
+                            edge="start"
                             color="inherit"
+                            aria-label="open drawer"
+                            sx={{ mr: 2 }}
+                            onClick={toggleDrawer(true)}
                         >
-                            <AccountCircle sx={{ color: '#FBFAF7' }} />
+                            <MenuIcon sx={{color: '#D7B76F'}} />
                         </IconButton>
-                    </Box>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <MoreIcon sx={{ color: '#FBFAF7' }} />
-                        </IconButton>
-                    </Box>
-                </Toolbar>
+                        <LogoContainer>
+                            <Link to="/">
+                                <img
+                                    src={LogoKochHeld}
+                                    alt="KochHeld Logo"
+                                    style={{ maxWidth: '50%', maxHeight: '50%', objectFit: 'contain', cursor: 'pointer' }}
+                                />
+                            </Link>
+                        </LogoContainer>
+                        <Search>
+                            <StyledInputBase placeholder="Finde dein Rezept" inputProps={{ 'aria-label': 'search' }} sx={{'& .MuiInputBase-input': {py: '4px', pl: 1, pr: 'calc(1em + 24px)'}}} />
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+                        </Search>
+                        <Box sx={{ flexGrow: 1 }} />
+                            <IconButton
+                                size="large"
+                                edge="end"
+                                aria-label="account of current user"
+                                aria-controls={menuId}
+                                aria-haspopup="true"
+                                onClick={handleProfileMenuOpen}
+                                color="inherit"
+                            >
+                                <AccountCircle sx={{ color: '#D7B76F' }} />
+                            </IconButton>
+                    </Toolbar>
+                </Container>
             </AppBar>
             <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
                 {menuList}
