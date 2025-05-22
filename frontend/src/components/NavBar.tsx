@@ -1,14 +1,12 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled} from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 // import MoreIcon from '@mui/icons-material/MoreVert';
 import Drawer from '@mui/material/Drawer';
@@ -23,29 +21,27 @@ import MenuBookIcon from '@mui/icons-material/MenuBook'; // Beispielicon für AI
 import RecipeIcon from '@mui/icons-material/Receipt';    // Beispielicon für Recipe
 import CottageIcon from '@mui/icons-material/Cottage';
 import LogoKochHeld from '../assets/images/LogoKochHeld.png';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {ListItemButton} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import InputBase from "@mui/material/InputBase";
 import Container from "@mui/material/Container";
 
 
-const Search = styled('div')(({ theme }) => ({
+// Design suchfeld
+const Search = styled('div')({
     position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha('#D7B76F', 0.15),
+    borderRadius: 8,
+    backgroundColor: '#f3e8c9',
     border: '1px solid #D7B76F',
-    '&:hover': {
-        backgroundColor: alpha('#D7B76F', 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
+    padding: '4px',
     width: '100%',
-    height: '2rem',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto',
+    maxWidth: 500,
+    transition: 'background-color 0.2s ease',
+    '&:hover': {
+        backgroundColor: '#e7d7aa',
     },
-}));
-
+});
 const SearchIconWrapper = styled('div')(({ theme }) => ({
     padding: theme.spacing(0, 1),
     height: '100%',
@@ -60,15 +56,15 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: '#FBFAF7',
+    color: '#222222',
     '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+        paddingLeft: `calc(1em + ${theme.spacing(3)})`,
         transition: theme.transitions.create('width'),
         width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: '20ch',
-        },
+        minWidth: '200px',
+        boxSizing: 'border-box',
+        whiteSpace: 'nowrap',
+        overflow: 'visible',
     },
 }));
 
@@ -84,10 +80,12 @@ const LogoContainer = styled('div')(({ theme }) => ({
 type NavBarProps = {
     login: () => void;
     logout: () => void;
+    searchText: string;
+    onSearchChange: (value: string) =>void;
 };
 
 
-export default function NavBar({login, logout }: NavBarProps) {
+export default function NavBar({login, logout, searchText, onSearchChange}: NavBarProps) {
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -210,11 +208,74 @@ export default function NavBar({login, logout }: NavBarProps) {
         </Box>
     );
 
+/*-------------------------------Search bar function--------------------------------------------------------------------------------*/
+    const navigate = useNavigate();
+    const handleEnter = (e:React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            navigate(`/search/${encodeURIComponent(searchText)}`);
+        }
+    };
+
     return (
         <Box sx={{ flexGrow: 1, width: '100%' }}>
             <AppBar position="fixed" sx={{ backgroundColor: '#3B4D17', width: '100%' }}>
+
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="open drawer"
+                        sx={{ mr: 2 }}
+                        onClick={toggleDrawer(true)}
+                    >
+                        <MenuIcon sx={{ color: '#FBFAF7' }} />
+                    </IconButton>
+                    <LogoContainer>
+                        <Link to="/">
+                            <img
+                                src={LogoKochHeld}
+                                alt="KochHeld Logo"
+                                style={{ maxWidth: '50%', maxHeight: '50%', objectFit: 'contain', cursor: 'pointer' }}
+                            />
+                        </Link>
+                    </LogoContainer>
+                    
+{/*----------------------Search Box----------------------------------------------------------------------------------- */}
+                    <Search>
+                        <SearchIconWrapper>
+                            <SearchIcon />
+                        </SearchIconWrapper>
+                        <StyledInputBase
+                            placeholder="Finde dein Rezept..."
+                            inputProps={{ 'aria-label': 'search' }}
+                            value={searchText}
+                            onChange={e => onSearchChange(e.target.value)}
+                            onKeyDown={handleEnter}
+                        />
+                    </Search>
+
+ {/*--------------  --------Search Box----------------------------------------------------------------------------------- */}
+
+                    <Box sx={{ flexGrow: 1 }} />
+                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                        <IconButton
+                            size="large"
+                            edge="end"
+                            aria-label="account of current user"
+                            aria-controls={menuId}
+                            aria-haspopup="true"
+                            onClick={handleProfileMenuOpen}
+                            color="inherit"
+                        >
+                            <AccountCircle sx={{ color: '#FBFAF7' }} />
+                        </IconButton>
+                    </Box>
+                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+
                 <Container>
                     <Toolbar sx={{"@media (min-width: 0px)": {px: 0}}}>
+
                         <IconButton
                             size="large"
                             edge="start"
@@ -257,6 +318,7 @@ export default function NavBar({login, logout }: NavBarProps) {
             </AppBar>
             <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
                 {menuList}
+
             </Drawer>
             {renderMobileMenu}
             {renderMenu}
