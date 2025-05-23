@@ -21,35 +21,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(a -> a
                         .requestMatchers("/api/auth/me").authenticated()
                        .requestMatchers("/oauth2/**").authenticated()
                           .anyRequest().permitAll()
                 )
-                .exceptionHandling(ex -> ex
-                        .authenticationEntryPoint((request, response, authException) -> {
-                            response.sendRedirect("/");
-                        })
-                )
-                .logout(l -> l.logoutSuccessUrl("https://kochheld.onrender.com/"))
-                .oauth2Login(o -> o.defaultSuccessUrl("https://kochheld.onrender.com/"));
+                .logout(l -> l.logoutSuccessUrl("http://localhost:5173"))
+                .oauth2Login(o -> o.defaultSuccessUrl("http://localhost:5173"));
         return http.build();
     }
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of(
-                "http://localhost:8080",
-                "http://localhost:5173",
-                "https://kochheld.onrender.com"
-        ));
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true); //
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return source;
-    }
 }

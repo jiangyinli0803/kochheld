@@ -13,14 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     @GetMapping("/me")
-    public ResponseEntity<?> getMe(@AuthenticationPrincipal OAuth2User principal) {
-        if (principal == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"error\": \"Not authenticated\"}");
-        }
-        Object loginObj = principal.getAttributes().get("login");
-        if (loginObj == null) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\": \"Login attribute missing\"}");
-        }
-        return ResponseEntity.ok(loginObj.toString());
+    public String getMe(@AuthenticationPrincipal OAuth2User user) {
+        return  user.getAttribute("login").toString();
+
+        //user.getName() return id
+
     }
 }
